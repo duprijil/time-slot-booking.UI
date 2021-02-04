@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                         hintText: "login",
                         focusedBorder: OutlineInputBorder(
                             borderSide:
-                                BorderSide(color: Colors.white, width: 1)),
+                                BorderSide(color: Colors.white, width: 3)),
                         enabledBorder:
                             OutlineInputBorder(borderSide: borderState),
                         prefixIcon: Padding(
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                         hintText: "password",
                         focusedBorder: OutlineInputBorder(
                             borderSide:
-                                BorderSide(color: Colors.white, width: 1)),
+                                BorderSide(color: Colors.white, width: 3)),
                         enabledBorder:
                             OutlineInputBorder(borderSide: borderState),
                         prefixIcon: Padding(
