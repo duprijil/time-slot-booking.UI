@@ -20,6 +20,7 @@ class TimeSlotBooking extends StatelessWidget {
       title: 'Time Slot Booking',
       theme: ThemeData.dark(),
       home: LoginPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

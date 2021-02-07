@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tmp/models/Auth.dart';
 import 'package:tmp/pages/MainPage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,15 +12,18 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  Auth _auth = Auth();
   BorderSide borderState = BorderSide(color: Colors.white, width: 1);
 
   String login;
   String password;
 
-  void OnLogInButtonPressed() {
+  void onLogInButtonPressed() {
     login = loginController.text;
     password = passwordController.text;
+    print("Hello WOrld");
+    _auth.loginRequest();
+    print("Salut");
     /*
     setState(() {
       borderState = BorderSide(color: Colors.red, width: 1);
@@ -124,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                           style:
                               TextStyle(color: Theme.of(context).primaryColor),
                         ),
-                        onPressed: OnLogInButtonPressed,
+                        onPressed: onLogInButtonPressed,
                       ),
                     ),
                   ),
