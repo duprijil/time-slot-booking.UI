@@ -27,6 +27,7 @@ dependencies:
   page_view_indicators: ^1.4.1
   worm_indicator: 0.2.4
   dio: 3.0.10
+  fluttertoast: ^7.1.6
 
 
   # The following adds the Cupertino Icons font to your application.

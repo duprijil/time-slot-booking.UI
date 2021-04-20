@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
-import 'package:page_view_indicators/circle_page_indicator.dart';
-import 'package:worm_indicator/shape.dart';
-import 'package:worm_indicator/worm_indicator.dart';
+import 'package:tmp/models/Service.dart';
+import 'package:tmp/widgets/ServiceItemWidget.dart';
+
+import 'SideMenu.dart';
+
+import 'package:tmp/models/ServicesLib.dart' as services;
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -12,127 +14,113 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  //AnimationController _animationController;
-  CalendarController _calendarController;
-  Map<DateTime, List> _events;
-  //List _selectedEvents;
-  final _items = [
-    Colors.blue,
-    Colors.orange,
-    Colors.green,
-    Colors.pink,
-    Colors.red,
-    Colors.amber,
-    Colors.brown,
-    Colors.yellow,
-    Colors.blue,
-  ];
-  final PageController _pageController = PageController();
-  final _currentPageNotifier = ValueNotifier<int>(0);
-
-  Scaffold calendarPage() {
-    return Scaffold(
-      body: Scaffold(
-        backgroundColor: Theme.of(context).primaryColor,
-        body: ListView(
-          children: <Widget>[
-            TableCalendar(
-              calendarController: _calendarController,
-              events: _events,
-              startingDayOfWeek: StartingDayOfWeek.monday,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text("LogOut"),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Scaffold listPage() {
-    return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-      body: ListView(
-        children: <Widget>[
-          Text("Hello"),
-        ],
-      ),
-    );
-  }
-
-  Widget buildPageView() {
-    return PageView(
-      physics: AlwaysScrollableScrollPhysics(),
-      controller: _pageController,
-      children: [
-        calendarPage(),
-        listPage(),
-      ],
-    );
-    /*
-    return PageView.builder(
-      physics: AlwaysScrollableScrollPhysics(),
-      controller: _pageController,
-      
-      itemBuilder: (BuildContext context, int pos) {
-        return PageView(
-          controller: _pageController,
-          children: [
-            calendarPage(),
-            listPage(),
-          ],
-        );
-      },
-      itemCount: 2,
-    );*/
-  }
-
-  Widget buildExampleIndicatorWithShapeAndBottomPos(
-      Shape shape, double bottomPos) {
-    return Positioned(
-      bottom: bottomPos,
-      left: 0,
-      right: 0,
-      child: WormIndicator(
-        length: 2,
-        controller: _pageController,
-        shape: shape,
-      ),
-    );
-  }
+  /*
+  IconButton addButton = IconButton(
+      icon: const Icon(Icons.add_circle),
+      onPressed: () => insertItem(1, services.testServices[0]));*/
+  final key = GlobalKey<AnimatedListState>();
+  final items = List.from(services.testServices);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          buildPageView(),
-          buildExampleIndicatorWithShapeAndBottomPos(
-              Shape(
-                size: 16,
-                shape: DotShape.Circle,
-                spacing: 8,
+        drawer: NavDrawer(),
+        appBar: AppBar(
+          title: Text('Welcome'),
+          actions: <Widget>[
+            IconButton(
+                icon: const Icon(Icons.add_circle),
+                onPressed: () => insertItem(0, services.testServices[0]))
+          ],
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: AnimatedList(
+                key: key,
+                initialItemCount: items.length,
+                itemBuilder: (context, index, animation) =>
+                    buildItem(items[index], index, animation),
               ),
-              20),
-        ],
-      ),
-    );
+            ),
+            /*
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: addButton,//buildInsertButton(),
+                                )*/
+          ],
+        ));
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _calendarController = CalendarController();
+  Widget buildItem(item, int index, Animation<double> animation) =>
+      ServiceItemWidget(
+        service: item,
+        animation: animation,
+        onClicked: () => removeItem(
+          index,
+        ),
+      );
+
+  void removeItem(int index) {
+    final item = items.removeAt(index);
+    key.currentState.removeItem(
+        index, (context, animation) => buildItem(item, index, animation));
   }
 
-  @override
-  void dispose() {
-    //_animationController.dispose();
-    _calendarController.dispose();
-    super.dispose();
+  void insertItem(int index, Service item) {
+    items.insert(index, item);
+    key.currentState.insertItem(index);
   }
+
+/*
+  Widget buildInsertButton() => RaisedButton(
+        child: Text('Add service'),
+        onPressed: () {},
+      );
+      */
 }
+
+/*
+
+ListView.builder(
+          itemCount: services.testServices.length,
+          itemBuilder: (context, index) {
+            return Center(
+              child: Card(
+                elevation: 2.0,
+                margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                child: Container(
+                  child: ListTile(
+                    title: Text(services.testServices[index].name),
+                  ),
+                ),
+              ),
+            );
+          },
+        ))
+ */
+
+/*
+
+Center(
+            child: AnimatedList(
+                initialItemCount: services.testServices.length,
+                itemBuilder: (context, index, animation) {
+                  return SlideTransition(
+                    position: animation.drive(AlignmentTween(
+                      begin: Alignment.topLeft,
+                      end: Alignment.topRight,
+                    )),
+                    child: Card(
+                      elevation: 2.0,
+                      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      child: Container(
+                        child: ListTile(
+                          title: Text(services.testServices[index].name),
+                        ),
+                      ),
+                    ),
+                  );
+                }))
+
+*/

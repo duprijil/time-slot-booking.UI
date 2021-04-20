@@ -2,6 +2,7 @@
     package="com.example.tmp">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
+        android:networkSecurityConfig="@xml/network_security_config"
         android:label="TimeSlotBooking"
         android:icon="@mipmap/ic_launcher">
         <activity
