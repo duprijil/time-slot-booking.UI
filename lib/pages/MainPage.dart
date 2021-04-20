@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tmp/models/Service.dart';
+import 'package:tmp/pages/AddEventPage.dart';
 import 'package:tmp/widgets/ServiceItemWidget.dart';
 
 import 'SideMenu.dart';
@@ -20,6 +21,7 @@ class _MainPageState extends State<MainPage> {
       onPressed: () => insertItem(1, services.testServices[0]));*/
   final key = GlobalKey<AnimatedListState>();
   final items = List.from(services.testServices);
+  Service newService;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +31,7 @@ class _MainPageState extends State<MainPage> {
           title: Text('Welcome'),
           actions: <Widget>[
             IconButton(
-                icon: const Icon(Icons.add_circle),
-                onPressed: () => insertItem(0, services.testServices[0]))
+                icon: const Icon(Icons.add_circle), onPressed: onAddButtonClick)
           ],
         ),
         body: Column(
@@ -70,6 +71,15 @@ class _MainPageState extends State<MainPage> {
   void insertItem(int index, Service item) {
     items.insert(index, item);
     key.currentState.insertItem(index);
+  }
+
+  void onAddButtonClick() async {
+    newService = await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AddEventPage()));
+    if (newService != null) {
+      await Future.delayed(Duration(seconds: 1));
+      insertItem(0, newService);
+    }
   }
 
 /*

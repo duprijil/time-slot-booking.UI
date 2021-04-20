@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tmp/models/Service.dart';
 
-class RegisterPage extends StatefulWidget {
-  RegisterPage({Key key}) : super(key: key);
+class AddEventPage extends StatefulWidget {
+  AddEventPage({Key key}) : super(key: key);
 
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _AddEventPageState createState() => _AddEventPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _AddEventPageState extends State<AddEventPage> {
   DateTime _selectedDate;
   TextEditingController _textEditingController = TextEditingController();
-
-  TextEditingController loginController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   BorderSide borderState = BorderSide(color: Colors.white, width: 1);
+
+  TextEditingController serviceNameController = TextEditingController();
+  TextEditingController serviceAddressController = TextEditingController();
+  TextEditingController serviceDealerNameController = TextEditingController();
+
+  TextEditingController timeCtl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,30 +28,60 @@ class _RegisterPageState extends State<RegisterPage> {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 100),
-                child: Align(
-                  child: Text(
-                    "Register",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
               Container(
+                alignment: Alignment.center,
                 child: Column(
                   children: <Widget>[
 /*--------------------------------------------------------------*/
+                    Padding(
+                      padding: EdgeInsets.only(top: 100),
+                      child: Align(
+                        child: Text(
+                          "Add service",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+/*--------------------------------------------------------------*/
                     Container(
-                      padding: EdgeInsets.only(bottom: 30, top: 40),
+                      padding: EdgeInsets.only(bottom: 20, top: 40),
                       child: TextField(
-                        //controller: loginController,
+                        controller: serviceNameController,
                         obscureText: false,
                         style: TextStyle(),
                         decoration: InputDecoration(
-                          hintText: "login",
+                          hintText: "service name",
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 3)),
+                          enabledBorder:
+                              OutlineInputBorder(borderSide: borderState),
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.only(
+                              left: 10,
+                              right: 10,
+                            ),
+                            child: IconTheme(
+                              data: IconThemeData(color: Colors.white),
+                              child: Icon(Icons.room_service),
+                            ),
+                          ),
+                        ),
+                      ),
+                      width: 200,
+                    ),
+/*--------------------------------------------------------------*/
+                    Container(
+                      padding: EdgeInsets.only(bottom: 30, top: 10),
+                      child: TextField(
+                        controller: serviceAddressController,
+                        obscureText: false,
+                        style: TextStyle(),
+                        decoration: InputDecoration(
+                          hintText: "address",
                           focusedBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(color: Colors.white, width: 3)),
@@ -71,11 +105,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     Container(
                       padding: EdgeInsets.only(bottom: 30),
                       child: TextField(
-                        //controller: loginController,
+                        controller: serviceDealerNameController,
                         obscureText: false,
                         style: TextStyle(),
                         decoration: InputDecoration(
-                          hintText: "name",
+                          hintText: "dealer name",
                           focusedBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(color: Colors.white, width: 3)),
@@ -107,7 +141,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           onDateTextFieldTap(context);
                         },
                         decoration: InputDecoration(
-                          hintText: "birthdaty",
+                          hintText: "date",
                           focusedBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(color: Colors.white, width: 3)),
@@ -129,13 +163,17 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
 /*--------------------------------------------------------------*/
                     Container(
-                      padding: EdgeInsets.only(bottom: 10),
+                      padding: EdgeInsets.only(bottom: 30),
                       child: TextField(
-                        //controller: passwordController,
-                        obscureText: true,
+                        focusNode: AlwaysDisabledFocusNode(),
+                        controller: timeCtl,
+                        obscureText: false,
                         style: TextStyle(),
+                        onTap: () {
+                          onAddTimeButtonClick(context);
+                        },
                         decoration: InputDecoration(
-                          hintText: "password",
+                          hintText: "time",
                           focusedBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(color: Colors.white, width: 3)),
@@ -148,46 +186,12 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                             child: IconTheme(
                               data: IconThemeData(color: Colors.white),
-                              child: Icon(Icons.security),
+                              child: Icon(Icons.timer),
                             ),
                           ),
                         ),
                       ),
                       width: 200,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-/*--------------------------------------------------------------*/
-                    Container(
-                      padding: EdgeInsets.only(bottom: 10),
-                      child: TextField(
-                        //controller: passwordController,
-                        obscureText: true,
-                        style: TextStyle(),
-                        decoration: InputDecoration(
-                          hintText: "repeat password",
-                          focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 3)),
-                          enabledBorder:
-                              OutlineInputBorder(borderSide: borderState),
-                          prefixIcon: Padding(
-                            padding: EdgeInsets.only(
-                              left: 10,
-                              right: 10,
-                            ),
-                            child: IconTheme(
-                              data: IconThemeData(color: Colors.white),
-                              child: Icon(Icons.security),
-                            ),
-                          ),
-                        ),
-                      ),
-                      width: 200,
-                    ),
-                    SizedBox(
-                      height: 20,
                     ),
 /*--------------------------------------------------------------*/
                     Padding(
@@ -200,11 +204,11 @@ class _RegisterPageState extends State<RegisterPage> {
                           highlightColor: Theme.of(context).primaryColor,
                           color: Colors.white,
                           child: Text(
-                            "REGISTER",
+                            "ADD",
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor),
                           ),
-                          onPressed: onRegisterButtonPressed,
+                          onPressed: onAddButtonClick,
                         ),
                       ),
                     ),
@@ -220,8 +224,39 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void onRegisterButtonPressed() {
-    Navigator.of(context).pop();
+  void onAddTimeButtonClick(BuildContext context) async {
+    TimeOfDay time = TimeOfDay.now();
+    FocusScope.of(context).requestFocus(new FocusNode());
+
+    TimeOfDay picked =
+        await showTimePicker(context: context, initialTime: time);
+    if (picked != null && picked != time) {
+      var now = DateTime.now();
+      var dt =
+          DateTime(now.year, now.month, now.day, picked.hour, picked.minute);
+      timeCtl.text = DateFormat.Hm().format(dt);
+      setState(() {
+        time = picked;
+      });
+    }
+  }
+
+  void onAddButtonClick() {
+    if (serviceAddressController.text.isEmpty ||
+        serviceNameController.text.isEmpty ||
+        _textEditingController.text.isEmpty ||
+        serviceDealerNameController.text.isEmpty) {
+      Navigator.pop(context);
+      return;
+    }
+    Service newService = Service(
+        address: serviceAddressController.text,
+        name: serviceNameController.text,
+        date: _textEditingController.text,
+        serverProviderFullName: serviceDealerNameController.text,
+        time: timeCtl.text);
+    Navigator.pop(context, newService);
+    //Navigator.of(context).pop();
   }
 
   void onDateTextFieldTap(BuildContext context) async {

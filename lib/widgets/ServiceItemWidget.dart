@@ -24,7 +24,7 @@ class ServiceItemWidget extends StatelessWidget {
         ),
         child: ListTile(
           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          title: Text(service.name),
+          title: Text(service.name + " | " + service.time),
           trailing: IconButton(
             icon: Icon(Icons.remove_circle),
             onPressed: onClicked,
