@@ -3,6 +3,7 @@ import 'package:tmp/models/Auth.dart';
 import 'package:tmp/pages/MainPage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:tmp/pages/RegisterPage.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -38,6 +39,11 @@ class _LoginPageState extends State<LoginPage> {
         });
       }
     });
+  }
+
+  void onRegisterButtonPressed() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => RegisterPage()));
   }
 
   @override
@@ -159,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor),
                           ),
-                          onPressed: onLogInButtonPressed,
+                          onPressed: onRegisterButtonPressed,
                         ),
                       ),
                     ),
