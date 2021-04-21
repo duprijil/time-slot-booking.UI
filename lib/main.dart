@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmp/pages/LoginPage.dart';
+import 'package:time_slot_booking/pages/LoginPage.dart';
 
 void main() => runApp(TimeSlotBooking());
 

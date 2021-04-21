@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tmp/models/Service.dart';
-import 'package:tmp/pages/AddEventPage.dart';
-import 'package:tmp/widgets/ServiceItemWidget.dart';
+import 'package:time_slot_booking/models/Service.dart';
+import 'package:time_slot_booking/pages/AddEventPage.dart';
+import 'package:time_slot_booking/widgets/ServiceItemWidget.dart';
 
 import 'SideMenu.dart';
 
-import 'package:tmp/models/ServicesLib.dart' as services;
+import 'package:time_slot_booking/models/ServicesLib.dart' as services;
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);

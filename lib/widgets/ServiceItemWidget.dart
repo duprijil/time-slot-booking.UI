@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmp/models/Service.dart';
+import 'package:time_slot_booking/models/Service.dart';
 
 class ServiceItemWidget extends StatelessWidget {
   final Service service;

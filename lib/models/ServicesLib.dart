@@ -1,6 +1,6 @@
 library tmp.services;
 
-import 'package:tmp/models/Service.dart';
+import 'package:time_slot_booking/models/Service.dart';
 
 List<Service> generate_services() {
   return [

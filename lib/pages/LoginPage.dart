@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tmp/models/Auth.dart';
-import 'package:tmp/pages/MainPage.dart';
+import 'package:time_slot_booking/models/Auth.dart';
+import 'package:time_slot_booking/pages/MainPage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:tmp/pages/RegisterPage.dart';
+import 'package:time_slot_booking/pages/RegisterPage.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);

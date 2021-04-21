@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tmp/models/Service.dart';
+import 'package:time_slot_booking/models/Service.dart';
 
 class AddEventPage extends StatefulWidget {
   AddEventPage({Key key}) : super(key: key);
