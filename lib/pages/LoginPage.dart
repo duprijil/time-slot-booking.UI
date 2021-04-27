@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:time_slot_booking/models/Auth.dart';
 import 'package:time_slot_booking/pages/MainPage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:time_slot_booking/pages/RegisterPage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -25,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
     login = loginController.text;
     password = passwordController.text;
 
-    var then = _auth.loginRequest().then((value) {
+    _auth.loginRequest().then((value) {
       if (value != null) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => MainPage()));
@@ -137,6 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Container(
                         height: 50,
                         width: 200,
+                        // ignore: deprecated_member_use
                         child: RaisedButton(
                           splashColor: Theme.of(context).primaryColor,
                           highlightColor: Theme.of(context).primaryColor,
@@ -156,6 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Container(
                         height: 50,
                         width: 200,
+                        // ignore: deprecated_member_use
                         child: RaisedButton(
                           splashColor: Theme.of(context).primaryColor,
                           highlightColor: Theme.of(context).primaryColor,

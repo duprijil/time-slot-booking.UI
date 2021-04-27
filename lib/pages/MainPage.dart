@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:time_slot_booking/models/Service.dart';
 import 'package:time_slot_booking/pages/AddEventPage.dart';
 import 'package:time_slot_booking/widgets/ServiceItemWidget.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'SideMenu.dart';
 
@@ -23,6 +24,8 @@ class _MainPageState extends State<MainPage> {
   final items = List.from(services.testServices);
   Service newService;
 
+  static const double dHorizontal = kIsWeb ? 150.0 : 0.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +40,14 @@ class _MainPageState extends State<MainPage> {
         body: Column(
           children: [
             Expanded(
-              child: AnimatedList(
-                key: key,
-                initialItemCount: items.length,
-                itemBuilder: (context, index, animation) =>
-                    buildItem(items[index], index, animation),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: dHorizontal),
+                child: AnimatedList(
+                  key: key,
+                  initialItemCount: items.length,
+                  itemBuilder: (context, index, animation) =>
+                      buildItem(items[index], index, animation),
+                ),
               ),
             ),
             /*

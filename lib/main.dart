@@ -18,7 +18,7 @@ class TimeSlotBooking extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Time Slot Booking',
-      theme: ThemeData.light(),
+      theme: ThemeData.dark(),
       home: LoginPage(),
       debugShowCheckedModeBanner: false,
     );

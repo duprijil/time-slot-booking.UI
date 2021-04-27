@@ -199,6 +199,7 @@ class _AddEventPageState extends State<AddEventPage> {
                       child: Container(
                         height: 50,
                         width: 200,
+                        // ignore: deprecated_member_use
                         child: RaisedButton(
                           splashColor: Theme.of(context).primaryColor,
                           highlightColor: Theme.of(context).primaryColor,

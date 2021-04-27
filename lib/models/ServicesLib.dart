@@ -2,6 +2,7 @@ library tmp.services;
 
 import 'package:time_slot_booking/models/Service.dart';
 
+// ignore: non_constant_identifier_names
 List<Service> generate_services() {
   return [
     Service(
