@@ -44,13 +44,14 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Download Artifact
-        uses: actions/download-artifact@master
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1
         with:
-          name: dist
-          path: dist
+          flutter-version: '2.0.5'
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Build release for web
+        run: flutter build web
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
