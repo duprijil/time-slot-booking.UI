@@ -27,7 +27,6 @@ jobs:
         
   test:
     needs: build
-    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -36,6 +35,7 @@ jobs:
         with:
           flutter-version: '2.0.5'
       - name: Analyze project source
+        continue-on-error: true
         run: flutter analyze
       - name: Run tests
         run: flutter test
