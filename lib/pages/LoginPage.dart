@@ -142,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                           highlightColor: Theme.of(context).primaryColor,
                           color: Colors.white,
                           child: Text(
-                            "LOG IN",
+                            "LOGIN",
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor),
                           ),
